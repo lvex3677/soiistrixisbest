@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soii.strix</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            color: #f8f9ff;
+            background-color: #07080d;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.16), transparent 28%),
+                        radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.18), transparent 20%),
+                        linear-gradient(180deg, #05060a 0%, #0c0e16 100%);
+            color: #f8f9ff;
+        }
+
+        .page {
+            width: min(1200px, 100%);
+            margin: 0 auto;
+            padding: 32px 24px 64px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            border-radius: 10px;
+            color: white;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .nav-links a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .support-button {
+            padding: 0.95rem 1.7rem;
+            border-radius: 999px;
+            background: #f8f9ff;
+            color: #0f172a;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .support-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 32px rgba(99, 102, 241, 0.18);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            align-items: center;
+            justify-items: center;
+            text-align: center;
+            padding: 80px 0 0;
+        }
+
+        .hero-copy {
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(139, 92, 246, 0.12);
+            color: #e0e7ff;
+            font-size: 0.88rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            margin: 0;
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+        }
+
+        .hero-text {
+            margin: 24px auto 0;
+            max-width: 680px;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            margin-top: 36px;
+            display: inline-flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button-primary,
+        .button-secondary {
+            border: none;
+            border-radius: 999px;
+            padding: 1rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            box-shadow: 0 18px 40px rgba(99, 102, 241, 0.22);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8f9ff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .button-primary:hover,
+        .button-secondary:hover,
+        .support-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            width: 100%;
+            max-width: 980px;
+            position: relative;
+            padding: 24px;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 40px 120px rgba(15, 23, 42, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 32px;
+            background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.18), transparent 28%);
+            pointer-events: none;
+        }
+
+        .hero-visual img {
+            display: block;
+            width: 100%;
+            border-radius: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 900px) {
+            .hero {
+                grid-template-columns: 1.05fr 0.95fr;
+                text-align: left;
+                justify-items: start;
+                align-items: center;
+            }
+
+            .hero-copy {
+                text-align: left;
+            }
+
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <div class="logo">
+                <span class="logo-mark">S</span>
+                <span>soii.strix</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#tutorial">Tutorial</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#discord">Discord</a>
+            </nav>
+            <button class="support-button">Support Server</button>
+        </header>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">v1.0.0</div>
+                <h1 class="hero-title">Great power in these hands.</h1>
+                <p class="hero-text">Worried about losing to a cheater? Or losing to the people around you? Soii.strix is the answer to all those worries!</p>
+                <div class="hero-buttons">
+                    <button class="button-primary">Purchase soii.strix</button>
+                    <button class="button-secondary">Dashboard</button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <img src="https://i.imgur.com/5y4DfGs.png" alt="soii.strix preview">
+            </div>
+        </section>
+    </div>
+</body>
+</html>
